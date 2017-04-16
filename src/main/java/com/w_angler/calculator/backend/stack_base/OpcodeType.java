@@ -1,7 +1,7 @@
 package com.w_angler.calculator.backend.stack_base;
 
 /**
- * simple IAS for this stack-based virtual machine, zero address or single address
+ * simple ISA for this stack-based virtual machine, zero address or single address
  * @author w-angler
  *
  */
@@ -13,14 +13,14 @@ public enum OpcodeType{
     push, 
 	/**
 	 * pop the top of the operand stack.
-	 * single address
+	 * zero address
 	 */
     pop,
     /*------------------------------------------------------------------*/
     /*********************************************/
     /**
      * do arithmetic operation on the top 2 elements of the operand stack.
-	 * single address
+	 * zero address
      */
     /*********************************************/
     add, 
@@ -42,7 +42,7 @@ public enum OpcodeType{
     load, 
     /**
      * write value to standard output stream.
-     * single address
+	 * zero address
      */
     print, 
     /**
