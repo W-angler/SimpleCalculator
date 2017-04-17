@@ -17,7 +17,9 @@ public class Context
     }
     
     public void addVariable(String name) {
-        variables.put(name, variables.size());
+    	if(!exists(name)){
+            variables.put(name, variables.size());
+    	}
     }
     
     public boolean exists(String name) {
