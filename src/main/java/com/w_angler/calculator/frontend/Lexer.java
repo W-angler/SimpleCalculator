@@ -24,7 +24,7 @@ public class Lexer{
 		while(Character.isWhitespace(ch)){
 			ch=source.nextChar();
 		}
-		//is digit
+		//isn't digit
 		if (!Character.isDigit(ch)) {
             if (ch == '(') {
                 return new Token(TokenType.LEFT_BRACKET, "(",
@@ -89,6 +89,7 @@ public class Lexer{
                 		source.getLineNum(), source.getCurrentPosition() - offset);
             }
         }
+		//is digit
         else {
             if (ch=='0'&&(source.peekChar()=='x'||source.peekChar()=='X')){
                 StringBuilder hex = new StringBuilder();

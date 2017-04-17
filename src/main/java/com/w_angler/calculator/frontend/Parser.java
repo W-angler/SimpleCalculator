@@ -24,17 +24,17 @@ import com.w_angler.calculator.frontend.opg.Precedence.Association;
 import static com.w_angler.calculator.frontend.TokenType.*;
 
 /**
- * Syntax Analysis, and its arithmetic expression use Operator Precedence Analysis
+ * Syntax Analysis, and its arithmetic expression part uses Operator Precedence Analysis
  * @author w-angler
  *
  */
 public class Parser{
 	/**
-	 * cursor point to current token
+	 * cursor pointing to current token
 	 */
 	private Token cursor;
 	/**
-	 * tokenss
+	 * tokens
 	 */
 	private LinkedList<Token> tokens=new LinkedList<>();
 	/**
