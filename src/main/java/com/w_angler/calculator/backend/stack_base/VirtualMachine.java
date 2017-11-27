@@ -14,7 +14,7 @@ public final class VirtualMachine
 	/**
 	 * operand stack
 	 */
-    private static Stack<Double> operandStack= new Stack<Double>();
+    private static Stack<Double> operandStack= new Stack<>();
     /**
      * slots for variables
      */

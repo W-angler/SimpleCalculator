@@ -21,6 +21,7 @@ import com.w_angler.calculator.frontend.opg.Operators;
 import com.w_angler.calculator.frontend.opg.Precedence;
 import com.w_angler.calculator.frontend.opg.Precedence.Association;
 
+import static java.util.Objects.*;
 import static com.w_angler.calculator.frontend.TokenType.*;
 
 /**
@@ -44,7 +45,7 @@ public class Parser{
 	private Lexer lexer;
 
 	public Parser(Lexer lexer) {
-		this.tokens = new LinkedList<Token>();
+		this.tokens = new LinkedList<>();
 		this.operators = Operators.BASIC;
 		this.lexer = lexer;
 	}
@@ -65,7 +66,7 @@ public class Parser{
 	 * @throws SyntaxException 
 	 */
 	private void error(TokenType... type)throws SyntaxException {
-		throw new SyntaxException(cursor+":Syntax Error!Excepted "+Arrays.stream(type).map(e->e.literal).collect(Collectors.toSet()));
+		throw new SyntaxException(cursor+":Syntax Error! Excepted "+Arrays.stream(type).map(e->e.literal).collect(Collectors.toSet()));
 	}
 	/**
 	 * has same token type?
@@ -74,19 +75,20 @@ public class Parser{
 	 * @throws SyntaxException 
 	 */
 	private void match(TokenType type) throws SyntaxException{
+		if(isNull(cursor)){		
+			throw new SyntaxException("Syntax Error! Unexcepted EOF, Excepted \"" + type.literal + "\"");
+		}
 		if(!cursor.getType().equals(type)){
 			error(type);
 		}
-		else{
-			cursor=tokens.poll();
-		}
+		cursor=tokens.poll();
 	}
 	/**
 	 * <program>::=(<assign>|<print>)*
 	 * @throws SyntaxException
 	 */
 	private AST program() throws SyntaxException{
-		List<AST> sentences = new ArrayList<AST>();
+		List<AST> sentences = new ArrayList<>();
 		while (!tokens.isEmpty()) {
 			switch (cursor.getType()) {
 			case IDENTIFIER: {
@@ -169,7 +171,7 @@ public class Parser{
 	private AST expression() throws SyntaxException{
 		AST expression=factor();
 		Precedence precedence;
-		while ((precedence = nextOperator()) != null){
+		while (nonNull(precedence = nextOperator())){
 			expression = shift(expression, precedence.value);
 		}
 		return expression;
@@ -182,14 +184,14 @@ public class Parser{
 		cursor=tokens.poll();
 		AST right=factor();
 		Precedence next;
-		while ((next = nextOperator()) != null&& shouldContinue(precedence, next)){
+		while (nonNull(next = nextOperator())&& shouldContinue(precedence, next)){
 			right = shift(right, next.value);
 		}
 		expression.setRight(right);
 		return expression;
 	}
 	private Precedence nextOperator(){
-		if (cursor!=null&&cursor.isOp()){
+		if (nonNull(cursor)&&cursor.isOp()){
 			return operators.get(cursor.getValue(),ARY.BINARY);
 		}
 		else{

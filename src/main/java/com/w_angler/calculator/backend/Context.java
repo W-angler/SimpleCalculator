@@ -8,9 +8,8 @@ import java.util.Map;
  * @author w-angler
  *
  */
-public class Context
-{
-    private Map<String, Integer> variables= new HashMap<String, Integer>();
+public class Context{
+    private Map<String, Integer> variables= new HashMap<>();
     
     public int getVariableNumber() {
         return variables.size();
