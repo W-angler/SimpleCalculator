@@ -15,10 +15,9 @@ A simple calculator for compiler principle
 	DOUBLE::= [0-9]+(_[0-9]+)* "." [0-9]+(_[0-9]+)*
 ## Features
 
-* A stack-based virtual machine
-* A stack-based ISA
 * Operator Precedence Analysis
 * Abstract Syntax Tree
 * Power operation
 * Hexadecimal number
 * Underscores in numeric literals
+* JSR 223
