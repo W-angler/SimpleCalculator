@@ -62,6 +62,10 @@ public enum TokenType{
 	 */
 	PRINT("print"),
 	/**
+	 * end of file
+	 */
+	EOF("EOF"),
+	/**
 	 * error
 	 */
 	ERROR("error");
