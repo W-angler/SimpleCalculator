@@ -22,3 +22,7 @@ A simple calculator for compiler principle
 * Power operation
 * Hexadecimal number
 * Underscores in numeric literals
+
+## Others
+
+JSR 223 support can be found in brach [jsr223](https://github.com/W-angler/SimpleCalculator/tree/jsr223).
